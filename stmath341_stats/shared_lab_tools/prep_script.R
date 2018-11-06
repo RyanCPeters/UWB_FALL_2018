@@ -34,6 +34,17 @@ pkgTest <- function(x)
 
 }
  
+script_intro <- function(x){
+  cat(bgGreen(black(bold("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"))))
+  cat(green(bold("Beginning "%+%magenta$underline(x)%+%" output\n...........................\n")))
+}
+
+script_outro <- function(x){
+  
+  cat(red(bold("\n~~~~~~~~~~~~~~~~~~~~~~~ Script complete: "%+%magenta$underline(x)%+%" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")))
+  cat(bgRed(black(bold("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"))))
+}
+
 pkgload <- function(req_pkg_list){
   DOC = "Given a vector of the caller's required packages, this function will test if the packages need to be dowloaded,
   downloading any that are missing, then it will load those packages in preperation for the caller's execution."
@@ -42,5 +53,37 @@ pkgload <- function(req_pkg_list){
   for( target_package in req_pkg_list){
     pkgTest(target_package)
     library(target_package, character.only=TRUE)
+  }
+}
+
+
+
+color_legend <- function(x=NULL){
+  color_choices <- list()
+  color_choices$black <- 
+    black("\tblack:\t\tIs just the standard data output text\n")
+  color_choices$red <- 
+    red("\tred:\t\tIs for alert messages\n")
+  color_choices$green <- 
+    green("\tgreen:\t\tDemonstrates the exact command which produces some body of output text\n")
+  
+  # the yellow color may or may not be used in any given exercise or problem script
+  color_choices$yellow <- 
+    yellow("\tyellow:\t\tIs for warning messages, allerting that something may negatively affect data outputs\n")
+  color_choices$magenta <- 
+    magenta("\tmagenta:\tHighligts parameters in examples, and special case outputs\n")
+  color_choices$cyan <- 
+    cyan("\tcyan:\t\tHighlights script flow messages.\n\t\t\tE.G., messages that show when a script ends or flows into another\n")
+  color_choices$blue <-
+    blue("\tblue:\t\tIs for drawing attention to example commands, these are demonstrations which aren't \n\t\t\tactually being executed in the script\n")
+  
+  
+  if(is.null(x) || nchar(x) < 1){
+    for(y in color_choices){
+      cat(y,"\n")
+    }
+  }
+  else{
+    cat(color_choices[[x]],"\n")
   }
 }
