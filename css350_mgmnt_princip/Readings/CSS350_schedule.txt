@@ -1,13 +1,37 @@
 CSS350_schedule.txt
 
-Week #1:	 General Theories, Organization as a System	Tucker Ch. 1 & 13
-Week #2:	 Individuals and Organizations. Emotional Intelligence	Tucker Ch.2, Katz Ch. 9 & 45
-Week #3:	 Groups and Organizations	Tucker Ch. 12, Katz Ch.14 & 16
-Week #4:	 Motivation	Tucker Ch. 7, Katz Ch. 1 & 2
-Week #5:	 Organizational Change	Tucker Ch. 16, Greiner, Battilana, Strebel
-Week #6:	 Leadership	Tucker Ch.11, Katz Ch. 10 & 17
-Week #7:	 Communications, Decision-Making and Negotiation	Tucker Ch. 6 & 10, Katz Ch.42
-Week #8:	 Creativity and Innovation	Tucker Ch. 5, Katz Ch. 35
-Week #9:	 Personnel	Tucker Ch. 8 & 9
-Week #10:	 Management and Big Data	Lohr, Jacob, Fisher, Davenport
+Week #1:	 General Theories, Organization as a System	
+  - Tucker Ch. 1 & 13
+Week #2:	 Individuals and Organizations. Emotional Intelligence	
+  - Tucker Ch.2
+  - Katz Ch. 9 & 45
+Week #3:	 Groups and Organizations	
+  - Tucker Ch. 12
+  - Katz Ch.14 & 16
+Week #4:	 Motivation	
+  - Tucker Ch. 7
+  - Katz Ch. 1 & 2
+Week #5:	 Organizational Change	
+  - Tucker Ch. 16
+  - Greiner
+  - Battilana
+  - Strebel
+Week #6:	 Leadership	
+  - Tucker Ch.11
+  - Katz Ch. 10 & 17
+Week #7:	 Communications, Decision-Making and Negotiation	
+  - Tucker Ch. 6 & 10
+  - Katz Ch.42
+Week #8:	 Creativity and Innovation	
+  - Tucker Ch. 5
+  - Katz Ch. 35
+Week #9:	 Personnel	
+  - Tucker Ch. 8 & 9
+Week #10:	 Management and Big Data	
+  - Lohr
+  - Jacob
+  - Fisher
+  - Davenport
+
+
 Dec. 12	Final Exam. (1:15pm - 3:15pm)	
