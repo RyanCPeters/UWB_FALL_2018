@@ -1,0 +1,67 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 11/5/2018 4:12:39 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Assembly HelloWorld
+00000000                             3  * Written by : Urmum Bangsohard
+00000000                             4  * Date       :
+00000000                             5  * Description: The quick start guide from easy68k.com
+00000000                             6  *-----------------------------------------------------------
+00001000                             7      ORG     $1000           ; first instruction of program
+00001000                             8  START:
+00001000                             9  *----- Code for output -----
+00001000  43F9 00001069             10  LOOP    LEA         MESSAGE,A1   *Loads MESSAGE into address register A1
+00001006  103C 000E                 11          MOVE.B      #14,D0       *Moves the number 14 into data register D0
+0000100A  4E4F                      12          TRAP        #15          *Executes trap task, as the value read from D0, which displays MESSAGE
+0000100C                            13      
+0000100C                            14  *----- Code for output -----
+0000100C  103C 0004                 15          MOVE.B      #4,D0        *TRAP code 4 tells the assembler to save input from keyboard
+00001010  4E4F                      16          TRAP        #15
+00001012                            17      
+00001012  B2BC 00000000             18          CMP.L       #0,D1        *Compare D1 to the number 0
+00001018  6700 0022                 19          BEQ         DONE         *Branch to DONE if they are equal
+0000101C                            20          
+0000101C  B23C 0000                 21          CMP.B       #0,D1        *Compare D1 to 0
+00001020  6D00 000C                 22          BLT         INVALID      *BLT branches if D1 is less than 0
+00001024  B23C 0009                 23          CMP.B       #9,D1        *Compares D1 to 1
+00001028  6E00 0004                 24          BGT         INVALID      *BGT branches if D1 is greater than 9
+0000102C                            25          
+0000102C  60D2                      26          BRA         LOOP 
+0000102E                            27  
+0000102E  43F9 00001042             28  INVALID LEA         INV,A1
+00001034  103C 000E                 29          MOVE.B      #14,D0
+00001038  4E4F                      30          TRAP        #15
+0000103A  60C4                      31          BRA         LOOP
+0000103C                            32      
+0000103C  103C 0009                 33  DONE    MOVE.B      #9,D0        *Staging trap code for halting code
+00001040  4E4F                      34          TRAP        #15          *Execute the trap code at D0, Halt the simulation
+00001042                            35          
+00001042                            36          
+00001042                            37  *This equates to an 'else' clause where we now branch because the values weren't equal
+00001042                            38      
+00001042                            39  
+00001042                            40  * Put variables and constants here
+00001042  =0000000D                 41  CR      EQU     $0D
+00001042  =0000000A                 42  LF      EQU     $0A
+00001042= 54 68 61 74 20 69 ...     43  INV     DC.B    'That is not a number between 1 and 9',CR,LF,0
+00001069= 48 45 4C 4C 4F 20 ...     44  MESSAGE DC.B    'HELLO WORLD',CR,LF
+00001076= 41 4C 4C 20 43 41 ...     45          DC.B    'ALL CAPS FOR SHOUTING',CR,LF
+0000108D= 45 4E 44 20 4F 46 ...     46          DC.B    'END OF LINE',CR,LF,'Hey, enter a number Bruh...',CR,LF,0
+000010B8                            47          END     START        ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CR                  D
+DONE                103C
+INV                 1042
+INVALID             102E
+LF                  A
+LOOP                1000
+MESSAGE             1069
+START               1000
