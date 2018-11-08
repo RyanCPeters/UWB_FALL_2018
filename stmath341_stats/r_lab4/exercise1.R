@@ -81,4 +81,5 @@ cat(green("\nhist(mdims$hgt,probability = TRUE)\n"))
 hist(mdims$hgt,probability = TRUE)
 cat(green("hist(fdims$hgt,probability = TRUE)\n"))
 hist(fdims$hgt,probability = TRUE)
+
 script_outro(paste("Exercise",script_num))
