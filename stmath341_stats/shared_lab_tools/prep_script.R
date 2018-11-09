@@ -33,7 +33,7 @@ pkgTest <- function(x)
   }
 
 }
- 
+
 script_intro <- function(x){
   cat(bgGreen(black(bold("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"))))
   cat(green(bold("Beginning "%+%magenta$underline(x)%+%" output\n...........................\n")))
@@ -87,3 +87,15 @@ color_legend <- function(x=NULL){
     cat(color_choices[[x]],"\n")
   }
 }
+
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(uniqv, v)))]
+}
+
+
+# hist_with_labels <- function(x,units="", ...) {
+#   H <- hist(x, plot = FALSE)
+#   labs <- paste(H$counts, units, sep="")
+#   plot(H, freq = TRUE, labels = labs, ylim=c(0, 1.08*max(H$counts)),...)
+# }

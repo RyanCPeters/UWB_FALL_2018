@@ -1,0 +1,416 @@
+---
+title: "RLab5 report"
+author: "Ryan Peters"
+output: 
+  html_document:
+    toc: yes
+  github_document:
+    toc: yes
+  word_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+Exercises
+===
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# lab_specific_utils, bellow, is a list of script names that are specifically useful to this lab only
+this_lab_main_name <- "README.Rmd"
+parent_folder <- "r_lab5"
+print(getwd())
+dir_list <-list.dirs(path=getwd(), full.names = TRUE)
+
+# creating the absolute paths to the root directories for this current lab and the lab utilities folder.
+lab_root  <- getwd()
+
+## If the idenfited string is empty, then something went wrong and we need to stop the script now.
+if(is.null(lab_root) || nchar(lab_root)<1){
+  stop("Alert! Terminating script as We can't find the absolute path to this lab's root directory")
+}
+
+# Details relating to crayon can be found at the creator's github repo for the package:
+# https://github.com/r-lib/crayon
+required_pkgs <- c("devtools", "crayon","foreach","doParallel")
+
+
+# A custom function for use in ensuring that R-library dependencies for commands use in this script are met
+# without forcing the user to reinstall those packages each time the script is called.
+# this function was coppied from:
+# https://stackoverflow.com/a/9341833/7412747
+pkgTest <- function(x)
+{
+  DOC ="given a vector of package names, this function is used to confirm that everything
+  is available and loaded as expected."
+  # Regrading the conditional check of:
+  # 	`!require(x,character.only = TRUE)`
+  # `require(x, ...)` will return a boolean indicating if
+  # the package-name saved to the variable `x` is installed.
+  #		-- Note that `character.only = TRUE` tells the function
+  #		   to explicitely reference the string that `x` points to.
+  #		   Not the name of the variable itself, ie., a package named 'x'
+  # If the package is not installed, require(x,...) 
+  # will return false, but because we negate that result with `!`, 
+  # we will see that it's true that we must enter the 
+  # body of the if block.
+  if (!require(x,character.only = TRUE))
+  {
+    install.packages(x,dep=TRUE)
+    # Now we sanity check the result of the operation to
+    # confirm that the package was actually installed, else
+    # we stop the script and explain why
+    if(!require(x,character.only = TRUE)) stop(cat(x,"Package not found"))
+  }
+
+}
+
+
+pkgload <- function(req_pkg_list){
+  DOC = "Given a vector of the caller's required packages, this function will test if the packages need to be dowloaded,
+  downloading any that are missing, then it will load those packages in preperation for the caller's execution."
+  # Here we are simply making sure that each of the required packages are 
+  # loaded into this current session of R
+  for( target_package in req_pkg_list){
+    pkgTest(target_package)
+    library(target_package, character.only=TRUE)
+  }
+}
+
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(uniqv, v)))]
+}
+
+hist_with_labels <- function(x,units="", text_col = "red", ...) {
+  H <- hist(x, plot = FALSE)
+  mids <- H$mids
+  counts <- H$count
+  # str(H)
+  hst <- hist(x, labels = mids, ylim = c(0, max(counts)*1.2), ...)
+  # text(hst$mids, hst$density, hst$counts, pos=3, cex=.8, col = text_col )
+}
+
+```
+
+-----
+
+```{r load_data, results="asis"}
+# pkgload is a custom script that's defined inside of the shared_lab_utils folder
+pkgload(c("devtools","crayon","utils"))
+# Instead of forcing the script to reload the dataframe every time we run it, 
+# lets do a quick check to see if it's already been instantiated from a 
+# previsou run first
+df_name <- 'ames'
+if (exists(df_name)) is.data.frame(get(df_name)) else{
+  download.file('http://www.openintro.org/stat/data/ames.RData', destfile = 'ames.RData')
+  load('ames.RData')
+}
+```
+
+```{r build_area_and_price, results="asis"}
+area <- ames$Gr.Liv.Area
+price <- ames$SalePrice
+# getmode(vector) is a custom function defined in prep_script
+area_mode <- area[which.max(tabulate(match(unique(area),area)))]
+price_mode <- price[which.max(tabulate(match(unique(price),price)))]
+```
+
+```{r area_summery, results="asis"}
+sumry <- summary(area)
+sumry["mode"] <- area_mode
+for(name in names(sumry)){
+  cat("\n",name,":",sumry[name],"\n")
+}
+```
+
+```{r area-histogam, results="asis"}
+hist_with_labels(area, border="yellow", col="dodgerblue", las=1, xlab="area")
+```
+
+### Exercise 1:
+**Describe this population distribution.**
+
+This is a right-skewed (aka right-tailed) distribution, with a mean of 1500 ft^2^ and a median of 1442 ft^2^.
+
+
+ Jump to [Table of Contents](#top)
+
+-----
+
+
+```{r samp1, results="asis"}
+samp1 <- sample(area, 50)
+hist_with_labels(samp1, border="dodgerblue", col="yellow", las=1, xlab="area for sample population of 50")
+```
+
+### Exercise 2:
+**Describe the distribution of this sample. How does it compare to the distribution of the population?**
+
+It still appears to be right skewed, but it is definitly closer to a normal distribution than the total population
+ 
+ 
+ Jump to [Table of Contents](#top)
+ 
+----
+
+```{r, results="asis"}
+mean(samp1)
+samp2 <- sample(area, 50)
+mean(samp2)
+```
+
+
+### Exercise 3:
+**Take a second sample, also of size 50, and call it samp2.**
+
+**How does the mean of samp2 compare with the mean of samp1?**
+
+It is definetly different, but it's hard to say if that's purely due to chance or the distribution of the population.
+
+**Suppose we took two more samples, one of size 100 and one of size 1000. Which would you think would provide a more accurate estimate of the population mean?**
+
+I believe that as the sample size gets larger, the accuracy of its sample statistics in approximating the population parameters directly improves. So I believe the 1000 sample would be better at approximating the total population's mean.
+
+
+ Jump to [Table of Contents](#top)
+
+---
+
+```{r, results="asis"}
+sample_means50 <- rep(NA, 5000)
+
+for(i in 1:5000){
+  samp <- sample(area, 50)
+  sample_means50[i] <- mean(samp)
+}
+
+hist_with_labels(sample_means50, text_col = "black", border="orange", col="magenta3", las=1, xlab="example means5 for sample populations of 50")
+```
+
+```{r, results="asis"}
+hist_with_labels(sample_means50, text_col = "black", border="orange3", col="magenta3", las=1,breaks = 25)
+```
+
+### Exercise 4:
+**How many elements are there in sample_means50?**
+
+```{r, results="asis"}
+length(sample_means50)
+```
+
+**Describe the sampling distribution, and be sure to specifically note its center.**
+
+It's an approximately normal distribution, with a mean around 1500.
+
+**Would you expect the distribution to change if we instead collected 50,000 sample means?**
+
+I would expect the distribution to continue to further conform to that of a normal distribution.
+
+ 
+ Jump to [Table of Contents](#top)
+
+---
+
+```{r, results="asis"}
+sample_means50 <- rep(NA, 5000)
+
+samp <- sample(area, 50)
+sample_means50[1] <- mean(samp)
+
+samp <- sample(area, 50)
+sample_means50[2] <- mean(samp)
+
+samp <- sample(area, 50)
+sample_means50[3] <- mean(samp)
+
+samp <- sample(area, 50)
+sample_means50[4] <- mean(samp)
+```
+
+```{r, results="asis"}
+sample_means50 <- rep(NA, 5000)
+
+for(i in 1:5000){
+  samp <- sample(area, 50)
+  sample_means50[i] <- mean(samp)
+  # print(i)
+}
+```
+
+### Exercise 5:
+**To make sure you understand what you've done in this loop, try running a smaller version. Initialize a vector of 100 zeros called sample_means_small. Run a loop that takes a sample of size 50 from area and stores the sample mean in sample_means_small, but only iterate from 1 to 100. Print the output to your screen (type sample_means_small into the console and press enter). How many elements are there in this object called sample_means_small? What does each element represent?**
+
+Nope, no answers here...
+
+ Jump to [Table of Contents](#top)
+
+---
+
+```{r sample_means50, results="asis"}
+hist_with_labels(sample_means50, text_col = "black", border="red2", col="cyan", las=1)
+```
+
+```{r area}
+sample_means10 <- rep(NA, 5000)
+sample_means100 <- rep(NA, 5000)
+
+for(i in 1:5000){
+  samp <- sample(area, 10)
+  sample_means10[i] <- mean(samp)
+  samp <- sample(area, 100)
+  sample_means100[i] <- mean(samp)
+}
+```
+
+```{r sample_means10, results="asis"}
+par(mfrow = c(3, 1),
+    oma = c(0,0,0,0) + 1,
+    mar = c(0,1,2,1) + 1)
+
+xlimits <- range(sample_means10)
+
+# hist(sample_means10, breaks = 20, xlim = xlimits)
+hist_with_labels(sample_means10, text_col = "yellow", breaks = 20, xlim = xlimits, border="gray", col="dodgerblue", las=1)
+# hist(sample_means50, breaks = 20, xlim = xlimits)
+hist_with_labels(sample_means50, text_col = "yellow", border="gray", col="dodgerblue", las=1)
+# hist(sample_means100, breaks = 20, xlim = xlimits)
+hist_with_labels(sample_means100, text_col = "yellow", breaks = 20, xlim = xlimits, border="gray", col="dodgerblue", las=1)
+
+```
+
+### Exercise 6:
+**When the sample size is larger, what happens to the center? What about the spread?**
+
+
+ Jump to [Table of Contents](#top)
+
+=====
+
+On your own
+=====
+
+So far, we have only focused on estimating the mean living area in homes in Ames. Now you'll try to estimate the mean
+home price.
+
+### On Your Own 1:
+**Take a random sample of size 50 from price. Using this sample, what is your best point estimate of the population mean?**
+```{r, results="asis"}
+price_sample <- sample(price, 50)
+hist_with_labels(price_sample, 
+                 border="white", 
+                 col="blue1", 
+                 las=1, 
+                 xlab="property prices for sample population of size = 50",
+                 main="Histogram for\nsingle sample population of 50 samples")
+smry <- summary(price_sample)
+cat("My best point estimate for the population mean is the sample mean: ***",smry[[4]],"***\n",sep="")
+
+```
+
+
+ Jump to [Table of Contents](#top)
+
+### On Your Own 2:
+**Since you have access to the population, simulate the sampling distribution for x-bar for price data by taking 5000 samples from the population of size 50 and computing 5000 sample means. Store these means in a vector called sample_means50.**
+```{r, results="asis"}
+sample_means50 <- range(5000)
+for(i in 0:5000){
+   sample_means50[i] <- mean(sample(price,50))
+}
+```
+
+**Plot the data, then describe the shape of this sampling distribution.**
+
+```{r, results="asis"}
+hist_with_labels( sample_means50, 
+                  border="white", 
+                  col="blue1", 
+                  las=1, 
+                  xlab= "property value averages from sample populations of size = 50",
+                  main="Histogram of means for\n50k sample populations of 50 samples a pieace")
+smry_50k <- summary( sample_means50)
+```
+
+**Based on this sampling distribution, what would you guess the mean home price of the population to be?**
+
+```{r, echo=FALSE, results="asis"}
+cat("The distribution is approximately normal, maybe slightly skewed to the rigt still\nFrom the histogram, I would estimate the mean home price to be approximately $180k\n")
+
+```
+
+**Finally, calculate and report the population mean.**
+
+```{r, results="asis"}
+cat("The calculated mean of 50k means on sample populations of 50... is: ***",smry_50k[[4]],"***\n",sep="")
+
+```
+
+ Jump to [Table of Contents](#top)
+
+
+### On Your Own 3:
+**Change your sample size from 50 to 150, then compute the sampling distribution using the same method as above, and store these means in a new vector called sample_means150.**
+
+**Describe the shape of this sampling distribution, and compare it to the sampling distribution for a sample size of 50.**
+
+**Based on this sampling distribution, what would you guess to be the meansale price of homes in Ames?**
+
+```{r, results="asis"}
+sample_means150 <- range(5000)
+for(i in 0:5000){
+   sample_means150[i] <- mean(sample(price,150))
+}
+
+hist_with_labels( sample_means150, 
+                  border="white", 
+                  col="blue1", 
+                  las=1, 
+                  xlab= "property value averages from sample populations of size = 150",
+                  main="Histogram of means for\n50k sample populations of 150 samples a pieace")
+smry_150k <- summary( sample_means150)
+
+cat("The distribution is approximately normal, though it is much less skewed than the sample size of only 50\nFrom the histogram, I would estimate the mean home price to be approximately $182k\nThe calculated mean of 50k means  on sample populations of 150... is: ***",smry_150k[[4]],"***\n",sep="")
+
+```
+
+ Jump to [Table of Contents](#top)
+
+
+### On Your Own 4:
+**Of the sampling distributions from 2 and 3, which has a smaller spread?**
+```{r, results="asis"}
+cat("The larger sample population has the smaller spread")
+```
+**If we're concerned with making estimates that are more often close to the true value, would we prefer a distribution with a large or small spread?**
+
+```{r, results="asis"}
+price_summary <- summary(price)
+true_mean <- price_summary[[4]]
+winner_winner_chicken_dinner = "Neither sample size has a clear advantage"
+if(abs(smry_50k[[4]]-true_mean) < abs(smry_150k[[4]]-true_mean)){
+  # the smaller sample size is closer to the true mean
+  winner_winner_chicken_dinner = "The smaller sample size appears to yield results closer to the population parameter mean"
+} else if(abs(smry_50k[[4]]-true_mean) < abs(smry_150k[[4]]-true_mean)){
+  # the larger sample size is closer to the true mean
+  winner_winner_chicken_dinner = "The larger sample size appears to yield results closer to the population parameter mean"
+}
+
+```
+```{r , echo=FALSE,results="asis"}
+cat("I believe we would want a distribution with a narrower spread as it will more consistently
+    provide an approximation that is reliably close to the true mean.\n",sep="")
+
+cat("\nAfter comparing samples against the true mean, it appears that the results are:\n*", winner_winner_chicken_dinner, "*\n",sep="")
+```
+
+ Jump to [Table of Contents](#top)
+
+
+
+# Disclaimers and such
+
+This is a product of OpenIntro that is released under a Creative Commons Attribution-ShareAlike 3.0 Unported. 
+
+This lab was written for OpenIntro by Andrew Bray and Mine Çetinkaya-Rundel.

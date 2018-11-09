@@ -1,0 +1,657 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={RLab5 report},
+            pdfauthor={Ryan Peters},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{RLab5 report}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Ryan Peters}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Exercises}\label{exercises}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# pkgload is a custom script that's defined inside of the shared_lab_utils folder}
+\KeywordTok{pkgload}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"devtools"}\NormalTok{,}\StringTok{"crayon"}\NormalTok{,}\StringTok{"utils"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: devtools
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: crayon
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Instead of forcing the script to reload the dataframe every time we run it, }
+\CommentTok{# lets do a quick check to see if it's already been instantiated from a }
+\CommentTok{# previsou run first}
+\NormalTok{df_name <-}\StringTok{ 'ames'}
+\ControlFlowTok{if}\NormalTok{ (}\KeywordTok{exists}\NormalTok{(df_name)) }\KeywordTok{is.data.frame}\NormalTok{(}\KeywordTok{get}\NormalTok{(df_name)) }\ControlFlowTok{else}\NormalTok{\{}
+  \KeywordTok{download.file}\NormalTok{(}\StringTok{'http://www.openintro.org/stat/data/ames.RData'}\NormalTok{, }\DataTypeTok{destfile =} \StringTok{'ames.RData'}\NormalTok{)}
+  \KeywordTok{load}\NormalTok{(}\StringTok{'ames.RData'}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{area <-}\StringTok{ }\NormalTok{ames}\OperatorTok{$}\NormalTok{Gr.Liv.Area}
+\NormalTok{price <-}\StringTok{ }\NormalTok{ames}\OperatorTok{$}\NormalTok{SalePrice}
+\CommentTok{# getmode(vector) is a custom function defined in prep_script}
+\NormalTok{area_mode <-}\StringTok{ }\NormalTok{area[}\KeywordTok{which.max}\NormalTok{(}\KeywordTok{tabulate}\NormalTok{(}\KeywordTok{match}\NormalTok{(}\KeywordTok{unique}\NormalTok{(area),area)))]}
+\NormalTok{price_mode <-}\StringTok{ }\NormalTok{price[}\KeywordTok{which.max}\NormalTok{(}\KeywordTok{tabulate}\NormalTok{(}\KeywordTok{match}\NormalTok{(}\KeywordTok{unique}\NormalTok{(price),price)))]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sumry <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(area)}
+\NormalTok{sumry[}\StringTok{"mode"}\NormalTok{] <-}\StringTok{ }\NormalTok{area_mode}
+\KeywordTok{print}\NormalTok{(sumry)}
+\end{Highlighting}
+\end{Shaded}
+
+Min. 1st Qu. Median Mean 3rd Qu. Max. mode 334 1126 1442 1500 1743 5642
+1656
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist_with_labels}\NormalTok{(area, }\DataTypeTok{border=}\StringTok{"yellow"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"dodgerblue"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"area"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : num {[}1:13{]} 0 500 1000 1500 2000 2500 3000 3500
+4000 4500 \ldots{} \$ counts : int {[}1:12{]} 6 433 1184 905 274 102 17
+4 2 1 \ldots{} \$ density : num {[}1:12{]} 4.10e-06 2.96e-04 8.08e-04
+6.18e-04 1.87e-04 \ldots{} \$ mids : num {[}1:12{]} 250 750 1250 1750
+2250 2750 3250 3750 4250 4750 \ldots{} \$ xname : chr ``x'' \$ equidist:
+logi TRUE - attr(*, ``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/area-histogam-1.pdf}
+
+\subsubsection{Exercise 1:}\label{exercise-1}
+
+\textbf{Describe this population distribution.}
+
+This is a right-skewed (aka right-tailed) distribution, with a mean of
+1500 ft\textsuperscript{2} and a median of 1442 ft\textsuperscript{2}.
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samp1 <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\KeywordTok{hist_with_labels}\NormalTok{(samp1, }\DataTypeTok{border=}\StringTok{"dodgerblue"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"yellow"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"area for sample population of 50"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:6{]} 500 1000 1500 2000 2500 3000 \$
+counts : int {[}1:5{]} 7 13 22 5 3 \$ density : num {[}1:5{]} 0.00028
+0.00052 0.00088 0.0002 0.00012 \$ mids : num {[}1:5{]} 750 1250 1750
+2250 2750 \$ xname : chr ``x'' \$ equidist: logi TRUE - attr(*,
+``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/samp1-1.pdf}
+
+\subsubsection{Exercise 2:}\label{exercise-2}
+
+\textbf{Describe the distribution of this sample. How does it compare to
+the distribution of the population?}
+
+It still appears to be right skewed, but it is definitly closer to a
+normal distribution than the total population Jump to
+\protect\hyperlink{top}{Table of Contents}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(samp1)}
+\end{Highlighting}
+\end{Shaded}
+
+{[}1{]} 1589.9
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samp2 <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(samp2)}
+\end{Highlighting}
+\end{Shaded}
+
+{[}1{]} 1533.2
+
+\subsubsection{Exercise 3:}\label{exercise-3}
+
+\textbf{Take a second sample, also of size 50, and call it samp2.}
+
+\textbf{How does the mean of samp2 compare with the mean of samp1?}
+
+It is definetly different, but it's hard to say if that's purely due to
+chance or the distribution of the population.
+
+\textbf{Suppose we took two more samples, one of size 100 and one of
+size 1000. Which would you think would provide a more accurate estimate
+of the population mean?}
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_means50 <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{5000}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5000}\NormalTok{)\{}
+\NormalTok{  samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\NormalTok{  sample_means50[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+\NormalTok{\}}
+
+\KeywordTok{hist_with_labels}\NormalTok{(sample_means50, }\DataTypeTok{text_col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{border=}\StringTok{"orange"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"magenta3"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"example means5 for sample populations of 50"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:12{]} 1250 1300 1350 1400 1450 1500 1550
+1600 1650 1700 \ldots{} \$ counts : int {[}1:11{]} 6 57 321 824 1359
+1276 757 296 81 18 \ldots{} \$ density : num {[}1:11{]} 0.000024
+0.000228 0.001284 0.003296 0.005436 \ldots{} \$ mids : num {[}1:11{]}
+1275 1325 1375 1425 1475 \ldots{} \$ xname : chr ``x'' \$ equidist: logi
+TRUE - attr(*, ``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist_with_labels}\NormalTok{(sample_means50, }\DataTypeTok{text_col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{border=}\StringTok{"orange3"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"magenta3"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{,}\DataTypeTok{breaks =} \DecValTok{25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:12{]} 1250 1300 1350 1400 1450 1500 1550
+1600 1650 1700 \ldots{} \$ counts : int {[}1:11{]} 6 57 321 824 1359
+1276 757 296 81 18 \ldots{} \$ density : num {[}1:11{]} 0.000024
+0.000228 0.001284 0.003296 0.005436 \ldots{} \$ mids : num {[}1:11{]}
+1275 1325 1375 1425 1475 \ldots{} \$ xname : chr ``x'' \$ equidist: logi
+TRUE - attr(*, ``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\subsubsection{Exercise 4:}\label{exercise-4}
+
+\textbf{How many elements are there in sample\_means50?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(sample_means50)}
+\end{Highlighting}
+\end{Shaded}
+
+{[}1{]} 5000 \textbf{Describe the sampling distribution, and be sure to
+specifically note its center.}
+
+It's an approximately normal distribution, with a mean around 1500.
+
+\textbf{Would you expect the distribution to change if we instead
+collected 50,000 sample means?}
+
+I would expect the
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_means50 <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{5000}\NormalTok{)}
+
+\NormalTok{samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\NormalTok{sample_means50[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+
+\NormalTok{samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\NormalTok{sample_means50[}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+
+\NormalTok{samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\NormalTok{sample_means50[}\DecValTok{3}\NormalTok{] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+
+\NormalTok{samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\NormalTok{sample_means50[}\DecValTok{4}\NormalTok{] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_means50 <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{5000}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5000}\NormalTok{)\{}
+\NormalTok{  samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{50}\NormalTok{)}
+\NormalTok{  sample_means50[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+  \CommentTok{# print(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Exercise 5:}\label{exercise-5}
+
+\textbf{To make sure you understand what you've done in this loop, try
+running a smaller version. Initialize a vector of 100 zeros called
+sample\_means\_small. Run a loop that takes a sample of size 50 from
+area and stores the sample mean in sample\_means\_small, but only
+iterate from 1 to 100. Print the output to your screen (type
+sample\_means\_small into the console and press enter). How many
+elements are there in this object called sample\_means\_small? What does
+each element represent?}
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist_with_labels}\NormalTok{(sample_means50, }\DataTypeTok{text_col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{border=}\StringTok{"red2"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"cyan"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:13{]} 1250 1300 1350 1400 1450 1500 1550
+1600 1650 1700 \ldots{} \$ counts : int {[}1:12{]} 7 60 312 893 1303
+1232 758 326 91 15 \ldots{} \$ density : num {[}1:12{]} 0.000028 0.00024
+0.001248 0.003572 0.005212 \ldots{} \$ mids : num {[}1:12{]} 1275 1325
+1375 1425 1475 \ldots{} \$ xname : chr ``x'' \$ equidist: logi TRUE -
+attr(*, ``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/sample_means50-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_means10 <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{5000}\NormalTok{)}
+\NormalTok{sample_means100 <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{5000}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5000}\NormalTok{)\{}
+\NormalTok{  samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{10}\NormalTok{)}
+\NormalTok{  sample_means10[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+\NormalTok{  samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(area, }\DecValTok{100}\NormalTok{)}
+\NormalTok{  sample_means100[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(samp)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \DataTypeTok{oma =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{) }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{,}
+    \DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}
+
+\NormalTok{xlimits <-}\StringTok{ }\KeywordTok{range}\NormalTok{(sample_means10)}
+
+\CommentTok{# hist(sample_means10, breaks = 20, xlim = xlimits)}
+\KeywordTok{hist_with_labels}\NormalTok{(sample_means10, }\DataTypeTok{text_col =} \StringTok{"yellow"}\NormalTok{, }\DataTypeTok{breaks =} \DecValTok{20}\NormalTok{, }\DataTypeTok{xlim =}\NormalTok{ xlimits, }\DataTypeTok{border=}\StringTok{"gray"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"dodgerblue"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:15{]} 900 1000 1100 1200 1300 1400 1500
+1600 1700 1800 \ldots{} \$ counts : int {[}1:14{]} 1 9 77 411 885 1298
+1094 699 334 128 \ldots{} \$ density : num {[}1:14{]} 0.000002 0.000018
+0.000154 0.000822 0.00177 \ldots{} \$ mids : num {[}1:14{]} 950 1050
+1150 1250 1350 1450 1550 1650 1750 1850 \ldots{} \$ xname : chr ``x'' \$
+equidist: logi TRUE - attr(*, ``class'')= chr ``histogram''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# hist(sample_means50, breaks = 20, xlim = xlimits)}
+\KeywordTok{hist_with_labels}\NormalTok{(sample_means50, }\DataTypeTok{text_col =} \StringTok{"yellow"}\NormalTok{, }\DataTypeTok{border=}\StringTok{"gray"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"dodgerblue"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:13{]} 1250 1300 1350 1400 1450 1500 1550
+1600 1650 1700 \ldots{} \$ counts : int {[}1:12{]} 7 60 312 893 1303
+1232 758 326 91 15 \ldots{} \$ density : num {[}1:12{]} 0.000028 0.00024
+0.001248 0.003572 0.005212 \ldots{} \$ mids : num {[}1:12{]} 1275 1325
+1375 1425 1475 \ldots{} \$ xname : chr ``x'' \$ equidist: logi TRUE -
+attr(*, ``class'')= chr ``histogram''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# hist(sample_means100, breaks = 20, xlim = xlimits)}
+\KeywordTok{hist_with_labels}\NormalTok{(sample_means100, }\DataTypeTok{text_col =} \StringTok{"yellow"}\NormalTok{, }\DataTypeTok{breaks =} \DecValTok{20}\NormalTok{, }\DataTypeTok{xlim =}\NormalTok{ xlimits, }\DataTypeTok{border=}\StringTok{"gray"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"dodgerblue"}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:21{]} 1320 1340 1360 1380 1400 1420 1440
+1460 1480 1500 \ldots{} \$ counts : int {[}1:20{]} 2 6 16 84 148 333 503
+695 803 788 \ldots{} \$ density : num {[}1:20{]} 0.00002 0.00006 0.00016
+0.00084 0.00148 0.00333 0.00503 0.00695 0.00803 0.00788 \ldots{} \$ mids
+: num {[}1:20{]} 1330 1350 1370 1390 1410 1430 1450 1470 1490 1510
+\ldots{} \$ xname : chr ``x'' \$ equidist: logi TRUE - attr(*,
+``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/sample_means10-1.pdf}
+
+\subsubsection{Exercise 6:}\label{exercise-6}
+
+\textbf{When the sample size is larger, what happens to the center? What
+about the spread?}
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+=====
+
+\section{On your own}\label{on-your-own}
+
+So far, we have only focused on estimating the mean living area in homes
+in Ames. Now you'll try to estimate the mean home price.
+
+\subsubsection{On Your Own 1:}\label{on-your-own-1}
+
+\textbf{Take a random sample of size 50 from price. Using this sample,
+what is your best point estimate of the population mean?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{price_sample <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(price, }\DecValTok{50}\NormalTok{)}
+\KeywordTok{hist_with_labels}\NormalTok{(price_sample, }
+                 \DataTypeTok{border=}\StringTok{"white"}\NormalTok{, }
+                 \DataTypeTok{col=}\StringTok{"blue1"}\NormalTok{, }
+                 \DataTypeTok{las=}\DecValTok{1}\NormalTok{, }
+                 \DataTypeTok{xlab=}\StringTok{"property prices for sample population of size = 50"}\NormalTok{,}
+                 \DataTypeTok{main=}\StringTok{"Histogram for}\CharTok{\textbackslash{}n}\StringTok{single sample population of 50 samples"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:7{]} 50000 100000 150000 200000 250000
+300000 350000 \$ counts : int {[}1:6{]} 4 16 16 8 4 2 \$ density : num
+{[}1:6{]} 1.6e-06 6.4e-06 6.4e-06 3.2e-06 1.6e-06 8.0e-07 \$ mids : num
+{[}1:6{]} 75000 125000 175000 225000 275000 325000 \$ xname : chr ``x''
+\$ equidist: logi TRUE - attr(*, ``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{smry <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(price_sample)}
+\KeywordTok{cat}\NormalTok{(}\StringTok{"My best point estimate for the population mean is the sample mean: ***"}\NormalTok{,smry[[}\DecValTok{4}\NormalTok{]],}\StringTok{"***}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+My best point estimate for the population mean is the sample mean:
+\textbf{\emph{173174.6}}
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\subsubsection{On Your Own 2:}\label{on-your-own-2}
+
+\textbf{Since you have access to the population, simulate the sampling
+distribution for x-bar for price data by taking 5000 samples from the
+population of size 50 and computing 5000 sample means.}
+
+\textbf{Store these means in a vector called sample\_means50.}
+
+\textbf{Plot the data, then describe the shape of this sampling
+distribution.}
+
+\textbf{Based on this sampling distribution, what would you guess the
+mean home price of the population to be?}
+
+\textbf{Finally, calculate and report the population mean.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ sample_means50 <-}\StringTok{ }\KeywordTok{range}\NormalTok{(}\DecValTok{5000}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{0}\OperatorTok{:}\DecValTok{5000}\NormalTok{)\{}
+\NormalTok{   sample_means50[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{sample}\NormalTok{(price,}\DecValTok{50}\NormalTok{))}
+\NormalTok{\}}
+
+\KeywordTok{hist_with_labels}\NormalTok{( sample_means50, }
+                  \DataTypeTok{border=}\StringTok{"white"}\NormalTok{, }
+                  \DataTypeTok{col=}\StringTok{"blue1"}\NormalTok{, }
+                  \DataTypeTok{las=}\DecValTok{1}\NormalTok{, }
+                  \DataTypeTok{xlab=} \StringTok{"property value averages from sample populations of size = 50"}\NormalTok{,}
+                  \DataTypeTok{main=}\StringTok{"Histogram of means for}\CharTok{\textbackslash{}n}\StringTok{50k sample populations of 50 samples a pieace"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:18{]} 140000 145000 150000 155000 160000
+165000 170000 175000 180000 185000 \ldots{} \$ counts : int {[}1:17{]} 1
+3 16 68 247 473 676 878 904 706 \ldots{} \$ density : num {[}1:17{]}
+4.00e-08 1.20e-07 6.40e-07 2.72e-06 9.88e-06 \ldots{} \$ mids : num
+{[}1:17{]} 142500 147500 152500 157500 162500 \ldots{} \$ xname : chr
+``x'' \$ equidist: logi TRUE - attr(*, ``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{smry_50k <-}\StringTok{ }\KeywordTok{summary}\NormalTok{( sample_means50)}
+
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The distribution is approximately normal, maybe slightly skewed to the rigt still}\CharTok{\textbackslash{}n}\StringTok{From the histogram, I would estimate the mean home price to be approximately $180k}\CharTok{\textbackslash{}n}\StringTok{The calculated mean of 50k means on sample populations of 50... is: ***"}\NormalTok{,smry_50k[[}\DecValTok{4}\NormalTok{]],}\StringTok{"***}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The distribution is approximately normal, maybe slightly skewed to the
+rigt still From the histogram, I would estimate the mean home price to
+be approximately \$180k The calculated mean of 50k means on sample
+populations of 50\ldots{} is: \textbf{\emph{181119.9}}
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\subsubsection{On Your Own 3:}\label{on-your-own-3}
+
+\textbf{Change your sample size from 50 to 150, then compute the
+sampling distribution using the same method as above, and store these
+means in a new vector called sample\_means150.}
+
+\textbf{Describe the shape of this sampling distribution, and compare it
+to the sampling distribution for a sample size of 50.}
+
+\textbf{Based on this sampling distribution, what would you guess to be
+the meansale price of homes in Ames?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_means150 <-}\StringTok{ }\KeywordTok{range}\NormalTok{(}\DecValTok{5000}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{0}\OperatorTok{:}\DecValTok{5000}\NormalTok{)\{}
+\NormalTok{   sample_means150[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{sample}\NormalTok{(price,}\DecValTok{150}\NormalTok{))}
+\NormalTok{\}}
+
+\KeywordTok{hist_with_labels}\NormalTok{( sample_means150, }
+                  \DataTypeTok{border=}\StringTok{"white"}\NormalTok{, }
+                  \DataTypeTok{col=}\StringTok{"blue1"}\NormalTok{, }
+                  \DataTypeTok{las=}\DecValTok{1}\NormalTok{, }
+                  \DataTypeTok{xlab=} \StringTok{"property value averages from sample populations of size = 150"}\NormalTok{,}
+                  \DataTypeTok{main=}\StringTok{"Histogram of means for}\CharTok{\textbackslash{}n}\StringTok{50k sample populations of 150 samples a pieace"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+List of 6 \$ breaks : int {[}1:11{]} 155000 160000 165000 170000 175000
+180000 185000 190000 195000 200000 \ldots{} \$ counts : int {[}1:10{]} 2
+16 190 724 1409 1426 853 309 63 8 \$ density : num {[}1:10{]} 8.00e-08
+6.40e-07 7.60e-06 2.90e-05 5.64e-05 \ldots{} \$ mids : num {[}1:10{]}
+157500 162500 167500 172500 177500 \ldots{} \$ xname : chr ``x'' \$
+equidist: logi TRUE - attr(*, ``class'')= chr ``histogram''
+\includegraphics{Ryan_Peters_RLab5_report_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{smry_150k <-}\StringTok{ }\KeywordTok{summary}\NormalTok{( sample_means150)}
+
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The distribution is approximately normal, though it is much less skewed than the sample size of only 50}\CharTok{\textbackslash{}n}\StringTok{From the histogram, I would estimate the mean home price to be approximately $182k}\CharTok{\textbackslash{}n}\StringTok{The calculated mean of 50k means  on sample populations of 150... is: ***"}\NormalTok{,smry_150k[[}\DecValTok{4}\NormalTok{]],}\StringTok{"***}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The distribution is approximately normal, though it is much less skewed
+than the sample size of only 50 From the histogram, I would estimate the
+mean home price to be approximately \$182k The calculated mean of 50k
+means on sample populations of 150\ldots{} is: \textbf{\emph{180692.6}}
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\subsubsection{On Your Own 4:}\label{on-your-own-4}
+
+\textbf{Of the sampling distributions from 2 and 3, which has a smaller
+spread?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The larger sample population has the smaller spread"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The larger sample population has the smaller spread \textbf{If we're
+concerned with making estimates that are more often close to the true
+value, would we prefer a distribution with a large or small spread?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{price_summary <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(price)}
+\NormalTok{true_mean <-}\StringTok{ }\NormalTok{price_summary[[}\DecValTok{4}\NormalTok{]]}
+\NormalTok{winner_winner_chicken_dinner =}\StringTok{ "Neither sample size has a clear advantage"}
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{abs}\NormalTok{(smry_50k[[}\DecValTok{4}\NormalTok{]]}\OperatorTok{-}\NormalTok{true_mean) }\OperatorTok{<}\StringTok{ }\KeywordTok{abs}\NormalTok{(smry_150k[[}\DecValTok{4}\NormalTok{]]}\OperatorTok{-}\NormalTok{true_mean))\{}
+  \CommentTok{# the smaller sample size is closer to the true mean}
+\NormalTok{  winner_winner_chicken_dinner =}\StringTok{ "The smaller sample size appears to yield results closer to the population parameter mean"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(}\KeywordTok{abs}\NormalTok{(smry_50k[[}\DecValTok{4}\NormalTok{]]}\OperatorTok{-}\NormalTok{true_mean) }\OperatorTok{<}\StringTok{ }\KeywordTok{abs}\NormalTok{(smry_150k[[}\DecValTok{4}\NormalTok{]]}\OperatorTok{-}\NormalTok{true_mean))\{}
+  \CommentTok{# the larger sample size is closer to the true mean}
+\NormalTok{  winner_winner_chicken_dinner =}\StringTok{ "The larger sample size appears to yield results closer to the population parameter mean"}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+I believe we would want a distribution with a narrower spread as it will
+more consistently provide an approximation that is reliably close to the
+true mean.
+
+After comparing samples against the true mean, it appears that the
+results are: \emph{Neither sample size has a clear advantage}
+
+Jump to \protect\hyperlink{top}{Table of Contents}
+
+\section{Disclaimers and such}\label{disclaimers-and-such}
+
+This is a product of OpenIntro that is released under a Creative Commons
+Attribution-ShareAlike 3.0 Unported.
+
+This lab was written for OpenIntro by Andrew Bray and Mine
+Çetinkaya-Rundel.
+
+
+\end{document}
