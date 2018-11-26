@@ -9,23 +9,7 @@ By Sparkle Motion
 - Keywords
 - 
 
-###Disclaimer, this slide is probably going to be deleted
-For the sake of our audience, we thought it necessary to explicitly state the intentions behind this presentation and the expected outcomes:
-- We anticipate that individual review of this slide deck will serve as a more informative experience to the audience than the initial presentation.  
-- In this light, we made it our primary goal that each slide be self-explanatory, and cite where that information came from.
-- As a consequence, much of our spoken presentation will be more about our personal extrapolations of that content. 
-- Naturally, this means we invite the audience to ask questions freely, and to engage in discussion on the subjects covered.
-
-
-Role
-Employees, trainers, managers
-![Leavitt's Diamond](Leavitt_diamond.png)
-
-
-###Orientation
-
-*Definitions from Tucker, ch. 8, page 154*
-
+### Keywords
 **Orientation**: The formal means by which employees learn about their new employer, their jobs, and coworkers.
 **Policy Orientation**: Informs employees of company *policies* and *benefits*
 **Procedural Orientation**:
@@ -44,6 +28,23 @@ Employees, trainers, managers
 **Sensitivity Development**:
 **Assertiveness Development**:
 
+### Disclaimer, this slide is probably going to be deleted
+
+For the sake of our audience, we thought it necessary to explicitly state the intentions behind this presentation and the expected outcomes:
+- We anticipate that individual review of this slide deck will serve as a more informative experience to the audience than the initial presentation.  
+- In this light, we made it our primary goal that each slide be self-explanatory, and cite where that information came from.
+- As a consequence, much of our spoken presentation will be more about our personal extrapolations of that content. 
+- Naturally, this means we invite the audience to ask questions freely, and to engage in discussion on the subjects covered.
+
+
+Role
+Employees, trainers, managers
+![Leavitt's Diamond](Leavitt_diamond.png)
+
+
+###Orientation
+
+*Definitions from Tucker, ch. 8, page 154*
 
 Accomplishes two major tasks:
 Policy orientation lists company policies
