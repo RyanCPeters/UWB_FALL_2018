@@ -21,9 +21,15 @@ For the sake of our audience, we thought it necessary to explicitly state the in
 
 ### Keywords
 #### From Chapter 8:
-- **Orientation**: The formal means by which employees learn about their new employer, their jobs, and coworkers. (page 154)
-- **Policy Orientation**: Informs employees of company *policies* and *benefits* (page 154)
-- **Procedural Orientation**: Making employees aware of locations, resources, and procedures that affect their ability to perform their job.
+- **Orientation**: 
+  + The formal means by which employees learn about their new employer, their jobs, and coworkers.
+  + Tucker, page 154
+- **Policy Orientation**: 
+  + Informs employees of company *policies* and *benefits* 
+  + Tucker, page 154
+- **Procedural Orientation**: 
+  + Making employees aware of locations, resources, and procedures that affect their ability to perform their job.
+  + Tucker, page 154
 - **Training**: 
 - **Development**: 
 - **Learning**: 
@@ -65,6 +71,7 @@ For the sake of our audience, we thought it necessary to explicitly state the in
 - Employees
 - trainers
 - managers
+
 ![Leavitt's Diamond](Leavitt_diamond.png)
 
 
