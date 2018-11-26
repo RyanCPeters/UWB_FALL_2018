@@ -163,7 +163,7 @@ For the sake of our audience, we thought it necessary to explicitly state the in
 
 
 ### [Orientation](#table-of-contents)
-*Definitions from Tucker, ch. 8, page 15*
+*Definitions from Tucker, ch. 8, page 154*
 
 Accomplishes two major tasks:
 - Policy orientation lists company policies
