@@ -1,7 +1,14 @@
 Personnel
 ===
 
-By Sparkle Motion
+Based upon the readings in:
+- The Human Challenge: Managing Yourself And Others In Organizations -- 7'th edition
+  + By Mary L. Tucker, Anne M. McCarthy, and Douglas A. Benton
+- The Human Side Of Managing Technological Innovation: A Collection of Readings
+  + Edited by Ralph Katz
+
+---
+A presentation by *Team Sparkle Motion*
 ---
 
 ## Table of Contents
@@ -24,7 +31,7 @@ Keywords
 ---
 ***The following keyword definitions are not word-for-word from the text,*** *and in many cases are summarizations of the more thorough or detailed definitions found on the page(s) cited for each keyword*
 
-#### From Chapter 8:
+#### From Chapter 8: *Orientation, Training, and Development*
 - **Orientation**: 
   + The formal means by which employees learn about their new employer, their jobs, and coworkers.
   + Tucker, page 154
@@ -76,7 +83,7 @@ Keywords
 - **Assertiveness Development**: 
   + 
   + Tucker, page 166
-#### From Chapter 9:
+#### From Chapter 9: *Appraisals, Promotions, and Dismissals*
 - **Performance Evaluation**: 
   + 
   + Tucker, page 173
