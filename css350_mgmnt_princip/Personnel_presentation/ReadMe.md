@@ -6,27 +6,27 @@ By Sparkle Motion
 
 ## Table of Contents
 
-- Keywords
+- [Keywords](keywords)
 - 
 
 ### Keywords
-**Orientation**: The formal means by which employees learn about their new employer, their jobs, and coworkers.
-**Policy Orientation**: Informs employees of company *policies* and *benefits*
-**Procedural Orientation**:
-**Training**:
-**Development**:
-**Learning**:
-**On-the-Job Training (OJT)**:
-**Programmed Instruction (PI)**:
-**Computer-Assisted Instruction (CAI)**:
-**Experiential Methods**:
-**Simulation**:
-**In-Basket Training**:
-**Case Method**:
-**Management Games**:
-**Role Playing**:
-**Sensitivity Development**:
-**Assertiveness Development**:
+- **Orientation**: The formal means by which employees learn about their new employer, their jobs, and coworkers.
+- **Policy Orientation**: Informs employees of company *policies* and *benefits*
+- **Procedural Orientation**:
+- **Training**:
+- **Development**:
+- **Learning**:
+- **On-the-Job Training (OJT)**:
+- **Programmed Instruction (PI)**:
+- **Computer-Assisted Instruction (CAI)**:
+- **Experiential Methods**:
+- **Simulation**:
+- **In-Basket Training**:
+- **Case Method**:
+- **Management Games**:
+- **Role Playing**:
+- **Sensitivity Development**:
+- **Assertiveness Development**:
 
 ### Disclaimer, this slide is probably going to be deleted
 
