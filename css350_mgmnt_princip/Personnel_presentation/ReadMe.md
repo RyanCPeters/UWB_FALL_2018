@@ -24,7 +24,7 @@ A presentation by *Team Sparkle Motion*
 - [Chapter 9 intro](#chapter-9-intro)
 
 ---
-Disclaimer
+[Disclaimer](#table-of-contents)
 ***this slide is probably going to be deleted***
 
 For the sake of our audience, we thought it necessary to explicitly state the intentions behind this presentation and the expected outcomes:
@@ -33,11 +33,11 @@ For the sake of our audience, we thought it necessary to explicitly state the in
 - As a consequence, much of our spoken presentation will be more about our personal extrapolations of that content. 
 - Naturally, this means we invite the audience to ask questions freely, and to engage in discussion on the subjects covered.
 
-Keywords
+[Keywords](#table-of-contents)
 ---
 ***The following keyword definitions are not word-for-word from the text,*** *and in many cases are summarizations of the more thorough or detailed definitions found on the page(s) cited for each keyword*
 
-#### From Chapter 8: *Orientation, Training, and Development*
+#### [From Chapter 8: *Orientation, Training, and Development*](#table-of-contents)
 - **Orientation**: 
   + The formal means by which employees learn about their new employer, their jobs, and coworkers.
   + Tucker, page 154
@@ -89,7 +89,7 @@ Keywords
 - **Assertiveness Development**: 
   + 
   + Tucker, page 166
-#### From Chapter 9: *Appraisals, Promotions, and Dismissals*
+#### [From Chapter 9: *Appraisals, Promotions, and Dismissals*](#table-of-contents)
 - **Performance Evaluation**: 
   + 
   + Tucker, page 173
@@ -152,9 +152,9 @@ Keywords
   + Tucker, page 189
 
 
-### Chapter 8 Intro
+### [Chapter 8 Intro](#table-of-contents)
 
-### Role
+### [Role](#table-of-contents)
 - Employees
 - trainers
 - managers
@@ -162,7 +162,7 @@ Keywords
 ![Leavitt's Diamond](Leavitt_diamond.png)
 
 
-### Orientation
+### [Orientation](#table-of-contents)
 *Definitions from Tucker, ch. 8, page 15*
 
 Accomplishes two major tasks:
@@ -170,7 +170,7 @@ Accomplishes two major tasks:
 - Procedural orientation lists the processes that affect how the employee does their job.
 
 
-### Benefits and outcomes of proper orientation
+### [Benefits and outcomes of proper orientation](#table-of-contents)
 *From Tucker, ch. 8, page 155*
 
 Proper orientation ensures that new employees are:
@@ -180,4 +180,4 @@ Proper orientation ensures that new employees are:
 - Less likely to be replaced by another employee
 
 
-### Chapter 9 Intro
+### [Chapter 9 Intro](#table-of-contents)
