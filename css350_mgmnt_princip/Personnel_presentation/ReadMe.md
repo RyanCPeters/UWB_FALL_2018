@@ -2,9 +2,9 @@ Personnel
 ===
 
 Based upon the readings in:
-- The Human Challenge: Managing Yourself And Others In Organizations -- 7'th edition
+- *The Human Challenge: Managing Yourself And Others In Organizations* -- 7'th edition
   + By Mary L. Tucker, Anne M. McCarthy, and Douglas A. Benton
-- The Human Side Of Managing Technological Innovation: A Collection of Readings
+- *The Human Side Of Managing Technological Innovation: A Collection of Readings* -- 2nd edition
   + Edited by Ralph Katz
 
 ---
@@ -123,7 +123,7 @@ Keywords
 - **Management by Objectives (MBO)**: 
   + 
   + Tucker, page 182
-- **Behaviorally Anchored Rating Scales**: 
+- ***Behaviorally Anchored Rating Scales (BARS)**: 
   + 
   + Tucker, page 183
 - **Halo effect**: 
