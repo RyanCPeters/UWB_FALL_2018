@@ -15,7 +15,13 @@ A presentation by *Team Sparkle Motion*
 
 - [Disclaimer](#disclaimer)
 - [Keywords](#keywords)
-- [Role]
+  + [From Chapter 8](#from-chapter-8-orientation-training-and-development)
+  + [From Chapter 9](#from-chapter-9-appraisals-promotions-and-dismissals)
+- [Role](#role)
+- [Chapter 8 intro](#chapter-8-intro)
+- [Orientation](#orientation)
+- [Benefits and outcomes of proper orientation](#benefits-and-outcomes-of-proper-orientation)
+- [Chapter 9 intro](#chapter-9-intro)
 
 ---
 Disclaimer
@@ -146,6 +152,8 @@ Keywords
   + Tucker, page 189
 
 
+### Chapter 8 Intro
+
 ### Role
 - Employees
 - trainers
@@ -171,3 +179,5 @@ Proper orientation ensures that new employees are:
 - Less likely to be absent from work
 - Less likely to be replaced by another employee
 
+
+### Chapter 9 Intro
